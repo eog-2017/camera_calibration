@@ -142,14 +142,20 @@ include_directories(
 # add_dependencies(kinect2_pc_filter ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Declare a C++ executable
-add_executable(camera_calibration src/calibrate.cc)
+add_executable(calibrate_kinect src/calibrate_kinect.cc)
+add_executable(calibrate_foscam src/calibrate_foscam.cc)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
 # add_dependencies(kinect2_pc_filter_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries(camera_calibration
+target_link_libraries(calibrate_kinect
+   ${catkin_LIBRARIES}
+   ${OpenCV_LIBRARIES}
+)
+
+target_link_libraries(calibrate_foscam
    ${catkin_LIBRARIES}
    ${OpenCV_LIBRARIES}
 )
