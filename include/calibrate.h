@@ -49,12 +49,14 @@ public:
     ~CalibrateFoscam();
     void getIntrinsics(bool is_left);
     void getStereoTx();
-    int getChessboardCorners(cv::Mat& image, bool is_left, bool save_images);
+    int getChessboardCorners(cv::Mat& image, bool is_left, bool save_images, bool dry_run);
     int getChessboardCorners(cv::Mat& image_1, cv::Mat& image_2, bool save_images);
-    void getChessboardCorners();
-    //double projectPoints();
-    void saveIntrinsics();
+    void getChessboardCorners(bool is_left);
+    double rmsError(bool is_left);
+    void saveIntrinsics(bool is_left);
+    void readIntrinsics(bool is_left);
     void saveStereo();
+    cv::Mat undistort(bool is_left, cv::Mat image);
 private:
     float calib_square_dimension;
     cv::Size chessboard_dimension;

@@ -108,7 +108,7 @@ find_package(PkgConfig REQUIRED)
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-#  INCLUDE_DIRS include
+  INCLUDE_DIRS include
 #  LIBRARIES kinect2_pc_filter
    CATKIN_DEPENDS cv_bridge image_transport roscpp sensor_msgs std_msgs
    DEPENDS system_lib
@@ -124,10 +124,23 @@ set(CMAKE_CXX_FLAGS "-std=c++11")
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 # include_directories(include)
+
+message(STATUS "${catkin_INCLUDE_DIRS}")
+message(STATUS "hi")
+message(STATUS "hi")
+message(STATUS "hi")
+message(STATUS "hi")
+message(STATUS "hi")
+message(STATUS "hi")
+message(STATUS "hi")
+message(STATUS "hi")
+message(STATUS "hi")
+message(STATUS "hi")
+
 include_directories(
+  include
   ${catkin_INCLUDE_DIRS}
   ${OpenCV_INCLUDE_DIRS}
-  include
   ${PCL_INCLUDE_DIRS}
 )
 
@@ -141,13 +154,15 @@ include_directories(
 ## either from message generation or dynamic reconfigure
 # add_dependencies(kinect2_pc_filter ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
+
 ## Declare a C++ executable
 add_executable(calibrate_kinect src/calibrate_kinect.cc)
 add_executable(calibrate_foscam src/calibrate_foscam.cc)
+add_dependencies(calibrate_foscam foscam_cam_ros)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
-# add_dependencies(kinect2_pc_filter_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(calibrate_foscam ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
 target_link_libraries(calibrate_kinect
